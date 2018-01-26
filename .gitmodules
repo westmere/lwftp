@@ -1,0 +1,3 @@
+[submodule "lwftp"]
+	path = lwftp
+	url = https://github.com/gezedo/lwftp.git
