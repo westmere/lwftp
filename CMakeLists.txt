@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 2.8)
 
+option(USE_STATIC_LWFTP_LIBRARY "Build mbed TLS static library." OFF)
+option(USE_OBJECT_LWFTP_LIBRARY "Build mbed TLS static library." ON)
 
-add_library(lwftp-object OBJECT lwftp/lwftp.c)
-add_library(lwftp-static STATIC lwftp/lwftp.c)
-
-target_include_directories(lwftp-static PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+if(USE_STATIC_LWFTP_LIBRARY)
+    add_library(lwftp-static STATIC lwftp/lwftp.c)
+    target_include_directories(lwftp-static PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+endif(USE_STATIC_LWFTP_LIBRARY)
+    
+if(USE_OBJECT_LWFTP_LIBRARY)
+    add_library(lwftp-object OBJECT lwftp/lwftp.c)
+endif(USE_OBJECT_LWFTP_LIBRARY)
